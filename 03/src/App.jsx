@@ -1,33 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  let [counter, setCounter] = useState(0)
+  const addvalue = ()=>{
+    if(counter < 10){
+      setCounter(counter + 1)
+    }
+  }
+  const removevalue = ()=>{
+    if(counter>0){
+      setCounter(counter - 1)
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="h-screen w-full bg-slate-700 text-white flex justify-center items-center flex-col gap-2">
+        <h1>hello it is working</h1>
+        <h3>counter value: {counter}</h3>
+        <button onClick={addvalue}  className="bg-blue-800 px-2 py-1 rounded-full mx-2">click to increase</button>
+        <button onClick={removevalue} className="bg-blue-800 px-2 py-1 rounded-full mx-2">click to decrease</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
