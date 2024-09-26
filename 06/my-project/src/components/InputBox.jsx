@@ -1,26 +1,27 @@
 import React, { useId } from 'react'
 
-function InputBox(
+function InputBox({
     label,
     amount,
     onAmountChange,
     onCurrencyChange,
     currencyOptions = [],
-    selectCurrency = 'usd',
+    selectCurrency = "",
     amountDisable = false,
     currencyDisable = false,
-    className = ''
-) {
+}) {
     const amountInputId = useId()
+
     return (
-        <div className={`bg-white p-3 rounded-lg text-sm flex ${className}`}>
+        <div className={`bg-white p-3 rounded-lg text-sm flex`}>
             <div className="w-1/2">
                 <label htmlFor={amountInputId} className="text-black/40 mb-2 inline-block">
                     {label}
                 </label>
                 <input
+                    min="1"
                     id={amountInputId}
-                    className="outline-none w-full bg-transparent py-1.5"
+                    className="outline-none w-full bg-transparent py-1.5 border border-black rounded-xl px-1"
                     type="number"
                     placeholder="Amount"
                     disabled={amountDisable}
