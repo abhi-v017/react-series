@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -8,6 +6,29 @@ function App() {
   const [number, setNumber] = useState(false)
   const [character, setCharacter] = useState(false)
   const [length, setLength] = useState(8)
+  const passwordref = useRef(null)
+  const passwordgenerator = useCallback(()=>{
+    let pass = ''
+    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    if(number)str +='1234567890'
+    if(character)str +='`~!@#$%^&*(){}[]>_<'
+    for (let i = 0; i < length; i++) {
+      let char = Math.floor(Math.random()*str.length+1)
+      pass += str.charAt(char)
+    }
+    setPassword(pass)
+  },[length, number, character, setPassword])
+
+  const copypassword = useCallback(()=>{
+    passwordref.current?.select();
+    passwordref.current?.setSelectionRange(0,12);
+    window.navigator.clipboard.writeText(password)
+  },[password])
+
+  useEffect(() => {
+  passwordgenerator()
+  }, [length, number, character, passwordgenerator])
+  
 
   return (
     <>
@@ -20,8 +41,9 @@ function App() {
             placeholder='password'
             readOnly
             className='border border-black rounded-2xl px-2 py-1 text-center text-black'
+            ref={passwordref}
             />
-            <button className='bg-blue-600 font-bold px-2 py-1 rounded-lg mx-2 hover:bg-blue-500 text-white'>copy</button>
+            <button onClick={copypassword} className='bg-blue-600 font-bold px-2 py-1 rounded-lg mx-2 hover:bg-blue-500 text-white'>copy</button>
           </div>
           <div>
             <input 
