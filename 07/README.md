@@ -1,8 +1,9 @@
-# React + Vite
+# React Router CC
+- import react-router-dom
+- then created home, contact, about pages.
+- in app import outlet from react-router-dom and make a component named Outlet whose value can be changed during routing.
+- in main.jsx import createBrowserRouter, createRoutesFromElements to created routes to move between pages.
+- use Route to provide paths and element.
+- then usd git api to get user data from github account.
+- then used useParams hook to get user id from link and use that data in user page.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
