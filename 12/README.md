@@ -1,8 +1,9 @@
-# React + Vite
+# react mega project
+1 - .env file have all the essential information of appwrite like project id collection id, appwriteurl bucket id , database id etc
+- conf.js file use all these IDs and export them as variables and also convert them to string.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2 - auth.js file have all the methods that are used for authentication, it has a class authservice which has a client, account and constructor and also the authentication methods.
+- construcotr has endpoinnt which has appwriteurl and project id and lso create account using new Account with parameter client.
+- then it has createAccount, login, getCurrentUser, logout this are try catch block with method .create, .createEmailPasswordSession, .get, .deleteSessions
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3 - 
