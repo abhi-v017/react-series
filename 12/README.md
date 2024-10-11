@@ -6,4 +6,4 @@
 - construcotr has endpoinnt which has appwriteurl and project id and lso create account using new Account with parameter client.
 - then it has createAccount, login, getCurrentUser, logout this are try catch block with method .create, .createEmailPasswordSession, .get, .deleteSessions
 
-3 - 
+3 - config.js has all the file manipulation methods like createPost, updatePost, deletePost, getPost, getPosts, uploadFile, deleteFile, getFilePreview which are defined as same as we define auth services. 
