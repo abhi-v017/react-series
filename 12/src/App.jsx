@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 import './App.css'
 import authService from './appwrite/auth'
 import { login, logout } from './store/authSlice'
-import {Outlet} from 'react-router-dom'
-import {Header, Footer} from './components/index'
+import { Outlet } from 'react-router-dom'
+import { Header, Footer } from './components/index'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -24,9 +24,11 @@ function App() {
   return !loading ? (
     <div className='bg-slate-500 w-screen'>
       <div className='w-full'>
-          <Header/>
-          <Outlet/>
-          <Footer/>
+        <Header />
+        <main>
+          <Outlet />
+        </main>
+        <Footer />
       </div>
     </div>
   ) : null
