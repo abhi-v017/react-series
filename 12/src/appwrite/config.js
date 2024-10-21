@@ -1,18 +1,18 @@
-import conf from "../conf.js";
+import conf from "../conf/conf.js";
 import { Client, Databases, ID, Storage, Query } from "appwrite";
 
-export class Service{
+export class Service {
     client = new Client();
     databases;
     bucket;
-    constructor(){
+    constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl)
             .setProject(conf.projectId)
-            this.databases = new Databases(this.client)
-            this.bucket = new Storage(this.client)
+        this.databases = new Databases(this.client)
+        this.bucket = new Storage(this.client)
     }
-    async createPost({title, slug, featuredImage, content, status, userId}){
+    async createPost({ title, slug, featuredImage, content, status, userId }) {
         try {
             return await this.databases.createDocument(
                 conf.databaseId,
@@ -30,7 +30,7 @@ export class Service{
             console.log('Appwrite service :: createPost :: error', error)
         }
     }
-    async updatePost(slug, {title, content, featuredImage,status}){
+    async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
                 conf.databaseId,
@@ -47,7 +47,7 @@ export class Service{
             console.log('Appwrite service :: updatepost :: error', error)
         }
     }
-    async deletePost(slug){
+    async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
                 conf.databaseId,
@@ -72,7 +72,7 @@ export class Service{
             return false
         }
     }
-    async getPosts(queries = [Query.equal('status', 'active')]){
+    async getPosts(queries = [Query.equal('status', 'active')]) {
         try {
             return await this.databases.listDocuments(
                 conf.databaseId,
@@ -85,9 +85,9 @@ export class Service{
     }
     // upload file
 
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
-            return await this.bucket.uploadFile(
+            return await this.bucket.createFile(
                 conf.bucketId,
                 ID.unique(),
                 file
@@ -97,20 +97,25 @@ export class Service{
             return false
         }
     }
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
-            conf.bucketId,
-            fileId
+            await this.bucket.deleteFile(
+                conf.bucketId,
+                fileId
+            )
             return true
         } catch (error) {
             console.log('Appwrite service :: deletefile :: error', error)
             return false
         }
     }
-    getFilePreview(fileId){
-        this.bucket.getFilePreview(
+    getFilePreview(fileId) {
+        return this.bucket.getFilePreview(
             conf.bucketId,
             fileId
         )
     }
 }
+
+const service = new Service()
+export default service
